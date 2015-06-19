@@ -1,0 +1,2 @@
+serviceClass: co.edu.unal.timeentry.client.LoginService
+path: 28DE80C6D48ACE426F628BC908C8480A.gwt.rpc
