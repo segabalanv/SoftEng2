@@ -1,0 +1,5 @@
+# Module timeentry
+# RPC service class, partial path of RPC policy file
+co.edu.unal.timeentry.client.LoginService, 28DE80C6D48ACE426F628BC908C8480A.gwt.rpc
+co.edu.unal.timeentry.client.GreetingService, 255AB71600146A86E118F341B16702D5.gwt.rpc
+co.edu.unal.timeentry.client.DataService, 96D1481FB79BBBBF5A9144B81825AAD3.gwt.rpc

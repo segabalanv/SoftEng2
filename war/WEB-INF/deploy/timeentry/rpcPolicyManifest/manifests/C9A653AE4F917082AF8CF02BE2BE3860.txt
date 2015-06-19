@@ -1,0 +1,2 @@
+serviceClass: co.edu.unal.timeentry.client.DataService
+path: 96D1481FB79BBBBF5A9144B81825AAD3.gwt.rpc

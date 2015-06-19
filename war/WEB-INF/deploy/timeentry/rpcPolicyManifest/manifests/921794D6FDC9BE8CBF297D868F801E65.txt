@@ -1,0 +1,2 @@
+serviceClass: co.edu.unal.timeentry.client.GreetingService
+path: 255AB71600146A86E118F341B16702D5.gwt.rpc
