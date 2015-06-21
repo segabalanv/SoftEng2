@@ -1,6 +1,6 @@
 package co.edu.unal.timeentry.client;
 
-import co.edu.unal.timeentry.server.TimeEntryEntity;
+import co.edu.unal.timeentry.server.guice.ofy.TimeEntryEntityOfy;
 import co.edu.unal.timeentry.shared.FieldVerifier;
 
 import com.google.gwt.core.client.EntryPoint;

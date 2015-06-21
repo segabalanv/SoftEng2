@@ -6,10 +6,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 
 import co.edu.unal.timeentry.client.DataService;
 import co.edu.unal.timeentry.client.NotLoggedInException;
 import co.edu.unal.timeentry.client.TimeEntryData;
+import co.edu.unal.timeentry.server.guice.ofy.TimeEntryEntityOfy;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -28,9 +30,9 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	public void init(ServletConfig sc) {
 		try {
 			super.init(sc);
-			ObjectifyService.register(TimeEntryEntity.class);
-		} catch (Exception e) {
-			// TODO: handle exception
+			ObjectifyService.register(TimeEntryEntityOfy.class);
+		} catch (ServletException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -82,10 +84,10 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 		
 		Vector<TimeEntryData> entries = new Vector<TimeEntryData>();
 		
-		List<TimeEntryEntity> entities = ofy().load().type(TimeEntryEntity.class).
+		List<TimeEntryEntityOfy> entities = ofy().load().type(TimeEntryEntityOfy.class).
 				filter("email",getUser().getEmail()).list();
 		
-		for(TimeEntryEntity entity : entities) {
+		for(TimeEntryEntityOfy entity : entities) {
 			TimeEntryData ted = new TimeEntryData();
 			ted.setBillable(entity.getBillable());
 			ted.setDate(entity.getDate());
@@ -111,12 +113,12 @@ public class DataServiceImpl extends RemoteServiceServlet implements DataService
 	}
 	
 	// utility method to translate client object to server-side objects
-	private Vector<TimeEntryEntity> toEntities(Vector<TimeEntryData> entries) {
+	private Vector<TimeEntryEntityOfy> toEntities(Vector<TimeEntryData> entries) {
 		// create a new vector of Entities to return
-		Vector<TimeEntryEntity> entities = new Vector<TimeEntryEntity>();
+		Vector<TimeEntryEntityOfy> entities = new Vector<TimeEntryEntityOfy>();
 		for(int i=0; i<entries.size(); i++) {
 			TimeEntryData ted = (TimeEntryData)entries.get(i);
-			TimeEntryEntity tee = new TimeEntryEntity();
+			TimeEntryEntityOfy tee = new TimeEntryEntityOfy();
 			tee.setBillable(ted.getBillable());
 			tee.setDate(ted.getDate());
 			tee.setHours(ted.getHours());
